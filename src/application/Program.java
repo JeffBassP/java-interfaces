@@ -12,13 +12,12 @@ import models.services.BrazilTaxService;
 import models.services.RentalService;
 
 public class Program {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ParseException {
 		
 		Locale.setDefault(Locale.US);
 		Scanner sc = new Scanner(System.in);
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:ss");
 		
-		try {
 		System.out.println("Enter rental data");
 		System.out.print("Car model: ");
 		String carModel = sc.nextLine();
@@ -28,12 +27,6 @@ public class Program {
 		Date finish = sdf.parse(sc.nextLine());
 		
 		CarRental cr = new CarRental(start, finish, new Vehicle(carModel));
-		}
-		catch(ParseException e) {
-			System.out.println("Formato de data errado!!");
-		}
-		
-		
 		System.out.println("Enter price per hour: ");
 		double pricePerHour = sc.nextDouble();
 		System.out.println("Enter price per day: ");
@@ -47,8 +40,7 @@ public class Program {
 		System.out.println("Basic Payment: " + String.format("%.2f", cr.getInvoice().getBasicPayment()));
 		System.out.println("Tax: " + String.format("%.2f", cr.getInvoice().getTax()));
 		System.out.println("Basic payment: " + String.format("%.2f", cr.getInvoice().getTotalPayment()));
-		
-		
+			
 		sc.close();
 	}
 }
